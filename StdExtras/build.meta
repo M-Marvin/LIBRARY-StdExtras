@@ -1,0 +1,41 @@
+import de.m_marvin.metabuild.java.script.JavaBuildScript;
+import de.m_marvin.metabuild.maven.types.Repository;
+import de.m_marvin.metabuild.maven.types.Repository.Credentials;
+
+public class Buildfile extends JavaBuildScript {
+	
+	String version = "1.0-SNAPSHOT";
+	
+	@Override
+	public void init() {
+		
+		projectName = "stdextras";
+		
+		super.init();
+
+		withSourcesJar();
+		
+		compileJava.sourceCompatibility = "17";
+		compileJava.targetCompatibility = "17";
+		
+	}
+	
+	@Override
+	public void publishing() {
+		super.publishing();
+		
+		publishMavenLocal.coordinates("de.m_marvin.stdextras:stdextras:" + version);
+		
+		publishMaven.coordinates("de.m_marvin.stdextras:stdextras:" + version);
+		publishMaven.repository(new Repository(
+				"GHP [StdExtras]", 
+				"https://maven.pkg.github.com/m-marvin/library-stdextras",
+				new Credentials(
+						() -> System.getenv("GITHUB_ACTOR"), 
+						() -> System.getenv("GITHUB_TOKEN")
+				)
+		));
+		
+	}
+	
+}
