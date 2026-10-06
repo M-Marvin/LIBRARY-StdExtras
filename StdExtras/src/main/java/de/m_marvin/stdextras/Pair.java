@@ -19,4 +19,8 @@ public record Pair<A, B>(A first, B second) implements Map.Entry<A, B> {
 		throw new UnsupportedOperationException("setValue");
 	}
 	
+	public static <K, V> Pair<K, V> forEntry(Map.Entry<K, V> entry) {
+		return new Pair<>(entry.getKey(), entry.getValue());
+	}
+	
 }
