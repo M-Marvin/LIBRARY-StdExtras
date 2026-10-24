@@ -4,7 +4,9 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-public class StreamExtras {
+public final class StreamExtras {
+	
+	private StreamExtras() {}
 	
 	public static <A,B> Stream<Pair<A,B>> costream(Stream<A> s1, Stream<B> s2) {
 		Iterator<B> iter = s2.iterator();
