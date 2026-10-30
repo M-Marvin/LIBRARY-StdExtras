@@ -1,4 +1,4 @@
-package de.m_marvin.stdextras.unstable;
+package de.m_marvin.stdextras.functional;
 
 @FunctionalInterface
 public interface UnstableBiFunction<T1, T2, R, E extends Throwable> {
